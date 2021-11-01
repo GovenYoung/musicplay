@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="Author" content="胡婉婷" />
+    <meta name="Copyright" content="&copy胡婉婷" />
+    <meta name="keywords" content="音乐,播放器" />
+    <meta name="description" content="音乐播放器" />
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="all" />
+    <meta name="viewport" content="width=1200">
+    <meta http-equiv="cache-control" content="no-siteapp">
+    <meta name="render" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <title>音乐播放器</title>
+    <link rel="shortcut icon" href="./favicon.ico">
+    <link rel="bookmark" href="./favicon.ico">
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/music.css" />
+</head>
+
+<body>
+    <div id="bg">
+        <div id="music_box">
+            <div class="top">
+                <span>好听</span>
+                <i v-show="isPlaying">正在播放：{{playingMusic}}</i>
+                <div>
+                    <input type="text" v-model="keyWord" @keyup.enter="search(keyWord)" />
+                    <button class="ss" @click="search(keyWord)"></button>
+                </div>
+            </div>
+            <div class="center">
+                <div class="music_list">
+                    <ul v-if="isHot">
+                        <li v-for="i in musicList" @click="playMusic(i.id,i.name,i.song.artists[0].name)">
+                            <i class="iconfont">&#xe634;</i>
+                            <span :title="i.name+' - '+i.song.artists[0].name">
+                                {{i.name}} - {{i.song.artists[0].name}}</span>
+                            <i class="iconfont" v-show="i.song.mvid!=0"
+                                @click.stop="mvPlaying(i.song.mvid)">&#xe6a3;</i>
+                        </li>
+                    </ul>
+                    <ul v-else>
+                        <li v-for="i in musicList" @click="playMusic(i.id,i.name,i.artists[0].name)">
+                            <i class="iconfont">&#xe634;</i>
+                            <span :title="i.name+' - '+i.artists[0].name">
+                                {{i.name}} - {{i.artists[0].name}}</span>
+                            <i class="iconfont" v-show="i.mvid!=0" @click.stop="mvPlaying(i.mvid)">&#xe6a3;</i>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="music_media">
+                    <div class="play_pic" :class="{playing:isPlaying}">
+                        <div><img :src="picUrl" alt=""></div>
+                    </div>
+                </div>
+                <div class="music_Comment">
+                    <p class="title" v-show="hotComments.length!=0">热门评论：</p>
+                    <ul class="c_list">
+                        <li v-for="i in hotComments">
+                            <div>
+                                <img :src="i.user.avatarUrl" alt="">
+                                <span>{{i.user.nickname}}</span>
+                            </div>
+                            <p>{{i.content}}</p>
+                        </li>
+                    </ul>
+                    <p class="title title1" v-show="comments.length!=0">最新评论：</p>
+                    <ul class="c_list">
+                        <li v-for="i in comments">
+                            <div>
+                                <img :src="i.user.avatarUrl" alt="">
+                                <span>{{i.user.nickname}}</span>
+                            </div>
+                            <p>{{i.content}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom">
+                <audio id="audio" @play="play" @pause="pause" :src="musicUrl" controls autoplay loop></audio>
+            </div>
+        </div>
+        <div class="mv_box" v-show="isShow" @click="mvClose">
+            <video @click.stop="" :src="mvUrl" controls autoplay></video>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+<script src="./js/music.js"></script>
+<script></script>
+
+</html>

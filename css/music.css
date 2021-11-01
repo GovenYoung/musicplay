@@ -1,0 +1,291 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+@font-face {
+  font-family: "iconfont"; /* Project id 2814912 */
+  src: url("//at.alicdn.com/t/font_2814912_q5z2yrgfkz.woff2?t=1631693157275")
+      format("woff2"),
+    url("//at.alicdn.com/t/font_2814912_q5z2yrgfkz.woff?t=1631693157275")
+      format("woff"),
+    url("//at.alicdn.com/t/font_2814912_q5z2yrgfkz.ttf?t=1631693157275")
+      format("truetype");
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+#bg {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  user-select: none;
+  transition: all 0.5s;
+  overflow: hidden;
+  z-index: 0;
+  /* transform: rotate(90deg); */
+}
+
+#bg:after {
+  content: "";
+  position: absolute;
+  width: 130%;
+  height: 130%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  filter: blur(2rem);
+  transform: translate(-3rem, -3rem);
+  background: url(../img/sky2.jpg) no-repeat center center;
+  background-size: 100% 100%;
+}
+
+#music_box {
+  width: 1080px;
+  height: 700px;
+  margin: 130px auto 0;
+  background: rgba(255, 255, 255, 0.212);
+  position: relative;
+  z-index: 2;
+}
+#music_box .top {
+  height: 60px;
+  padding: 0 30px;
+  background-color: rgb(99, 210, 253);
+}
+.top span {
+  font-size: 30px;
+  line-height: 60px;
+  color: #fff;
+  /* font-weight: bold; */
+  letter-spacing: 6px;
+}
+.top i {
+  color: #fff;
+  font-size: 16px;
+  display: inline-block;
+  margin-left: 20px;
+}
+.top div {
+  float: right;
+  width: 300px;
+  height: 35px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  margin-top: 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.575) url(../img/sousuo.png) no-repeat 96% /
+    auto 55%;
+  position: relative;
+}
+.top div input {
+  outline: none;
+  border: none;
+  background: none;
+  width: 90%;
+  height: 100%;
+}
+.top .ss {
+  width: 40px;
+  height: 100%;
+  border: none;
+  outline: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: none;
+}
+.center {
+  display: flex;
+  height: 586px;
+}
+.center > div {
+  flex: 1;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.center .music_list {
+  box-sizing: border-box;
+  margin: 10px 0;
+  overflow-y: scroll;
+}
+.center .music_list::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+.center .music_list::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  background: #3af8ffaf;
+}
+.center .music_list::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  border-radius: 10px;
+  background: #ffffff15;
+}
+.center .music_list ul {
+  font-size: 16px;
+  margin: 20px 15px;
+  color: rgb(255, 255, 255);
+}
+.music_list ul li {
+  font-size: 16px;
+  height: 40px;
+  padding: 0 15px;
+  line-height: 40px;
+}
+.music_list ul li:nth-of-type(odd) {
+  background: rgba(255, 255, 255, 0.13);
+}
+.music_list ul li span {
+  width: 80%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.music_list i {
+  font-size: 17px;
+  display: inline-block;
+  vertical-align: top;
+}
+.music_list i:last-of-type {
+  float: right;
+  color: rgba(255, 31, 76, 0.541);
+}
+
+.center .music_media {
+  flex: 1.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.music_media > .play_pic {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../img/chang.png) no-repeat center / 100% 100%;
+  animation: rotate 10s linear infinite forwards;
+  animation-play-state: paused;
+}
+.music_media .playing {
+  animation-play-state: running;
+}
+.music_media > .play_pic > div {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.music_media img {
+  height: 100%;
+}
+.music_Comment {
+  color: #fff;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+.center .music_Comment::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+.center .music_Comment::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  background: #c0cfecaf;
+}
+.center .music_Comment::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  border-radius: 10px;
+  background: #ffffff15;
+}
+
+.music_Comment .title {
+  font-size: 15px;
+  color: rgb(255, 208, 0);
+  margin-bottom: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.music_Comment .title1 {
+  margin-top: 25px;
+  color: rgb(0, 255, 213);
+}
+.music_Comment .c_list li {
+  font-size: 14px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ffffff15;
+}
+.music_Comment .c_list li:last-of-type {
+  border: none;
+}
+.music_Comment .c_list li img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.c_list li span {
+  font-size: 15px;
+  font-weight: bold;
+  padding-left: 8px;
+}
+.c_list li p {
+  margin-left: 50px;
+  line-height: 18px;
+  position: relative;
+  top: -7px;
+  text-align: justify;
+  padding-bottom: 7px;
+}
+
+.bottom {
+  width: 100%;
+  height: 54px;
+  background: #f1f3f4;
+  position: absolute;
+  bottom: 0;
+}
+.bottom audio {
+  width: 98%;
+  margin: 0 auto;
+  display: block;
+}
+.mv_box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.7);
+}
+.mv_box video {
+  height: 710px;
+  position: absolute;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
